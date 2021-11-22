@@ -42,7 +42,6 @@ function findByNumclient(num, callback) {
     database.getResult(selectClient, function(err, rows) {
         if (!err) {
             console.log(rows)
-        
             callback(null, rows);
         } else {
             console.log(err);
@@ -105,9 +104,6 @@ module.exports = {
     findByUsername,
     createAccount,
     findNumUsername,
-    // findBySociety,
     findByNumclient,
     createClient,
-    // deleteClient,
-    // createInitialAccounts
 };

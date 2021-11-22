@@ -1,33 +1,26 @@
-let username;
-
-
-
 const loginControl = (request, response) => {
     const clientServices = require('../services/clientServices');
 
     let username = request.body.username;
     let password = request.body.password;
     if (!username || !password) {
-        response.send('login failed');
-        response.end();
+        response.render('loggedin', { human : "Login Failed" });;
     } else {
         if (request.session && request.session.user) {
-            response.send("Already logged in");
-            response.end();
+            response.render('loggedin', { human : "Already logged in" });;
         } else {
             clientServices.loginService(username, password, function(err, dberr, client) {
                 console.log("Client from login service :" + JSON.stringify(client));
                 if (client === null) {
                     console.log("Auhtentication problem!");
-                    response.send('login failed'); //invite to register
-                    response.end();
+                    response.render('loggedin', { human : "Login Failed" });;
                 }else {
                     console.log("User from login service :" + client[0].num_client);
                     //add to session
                     request.session.user = username;
                     request.session.num_client = client[0].num_client;
                     request.session.admin = false;
-                    response.render('loggedin', { human : "Congratulations you are a verified human !" });;
+                    response.render('loggedin', { human : "Congratulations you are logged in !" });;
                 }
             });
         }
@@ -76,21 +69,13 @@ const getClientByNumclient = (request, response) => {
     const clientServices = require('../services/clientServices');
     let num_client = request.params.num_client;
     let username;
-            console.log("--------------------------------------------------------------------------------")
-            console.log(request)
-
-        clientServices.searchUsernameService(num_client, function(err, data){
-            console.log("--------------------------------------------------------------------------------")
-            console.log(data)
-            username = data.username
-            clientServices.searchNumclientService(num_client, function(err, rows) {
-                console.log(rows);
-                response.render('clientdetails', { clients: rows, name : username });
-            });
+    clientServices.searchUsernameService(num_client, function(err, row){
+        username = row.username
+        clientServices.searchNumclientService(num_client, function(err, rows) {
+            console.log(rows);
+            response.render('clientdetails', { clients: rows, name : username });
         });
-   
-        
-
+    });
 };
 
 

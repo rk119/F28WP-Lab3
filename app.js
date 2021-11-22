@@ -13,7 +13,7 @@ const session = require('express-session');
 app.use(session({secret: 'some secret code'}));
 
 app.set('view engine', 'ejs');
-///send the index.html when receiving HTTP GET /
+///send the index when receiving HTTP GET /
 app.get('/', (req, res) => {
     res.render('index');
 });   

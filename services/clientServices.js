@@ -97,13 +97,14 @@ const searchNumclientService = function(num_client, callback) {
             let client = null;
             callback(null, client);
         } else {
-            //rreturn the retrieved client 
+            //return the retrieved client 
             callback(null, rows[0]);
         }
     });
 };
 
 const searchUsernameService = function(num_client, callback) {
+    
     clientDAO.findNumUsername(num_client, function(err, rows) {
         if (err) {
             throw err;
@@ -116,12 +117,8 @@ const searchUsernameService = function(num_client, callback) {
             //rreturn the retrieved client 
             callback(null, rows[0]);
         }
-});
+    });
 }
-
-const deleteService = function(num_client, callback) {
-    //to be completed
-};
 
 module.exports = {
     loginService,
