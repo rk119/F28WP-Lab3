@@ -1,0 +1,23 @@
+<%- include('header'); -%>
+    <div class="content">
+        <h1>Selected articles</h1>
+        <table id="article"> 
+            <tr>
+                <th scope="row">Name</th>
+                <td><%= product.name %></td>
+            </tr> 
+            <tr>
+                <th scope="row">Reference</th>
+                <td><%= product.reference %></td>
+            </tr>
+            <tr>
+                <th scope="row">Category</th>
+                <td><%= product.category %></td>
+            </tr>
+            <tr>
+                <th scope="row">Price</th>
+                <td><%= product.price %></td>
+            </tr>
+        </table>    
+    </div><br>
+<%- include('footer'); -%>

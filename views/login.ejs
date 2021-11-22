@@ -1,0 +1,17 @@
+<%- include('header'); -%>
+ <div class="content">
+    <h1>Login</h1>
+    <div class="login">
+        <form method="post" action="/api/login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Submit">
+        </form> 
+    </div>
+    <div class="register">
+        <p>Dont have an account? <a href="register.ejs">Register</a></p>
+    </div>
+ </div><br>
+<%- include('footer'); -%>
