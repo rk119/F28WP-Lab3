@@ -16,7 +16,7 @@ function find(callback) {
 }
 
 function findByUsername(username, callback) {
-    const selectClient = (`SELECT username from account where username like '${username}';`);
+    const selectClient = (`SELECT * from account where username like '${username}';`);
     database.getResult(selectClient, function(err, rows) {
         if (!err) {
             callback(null, rows);

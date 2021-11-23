@@ -125,6 +125,5 @@ module.exports = {
     registerService,
     searchNumclientService,
     searchService,
-    deleteService,
     searchUsernameService
 };

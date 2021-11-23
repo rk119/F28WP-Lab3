@@ -7,20 +7,20 @@ const loginControl = (request, response) => {
         response.render('loggedin', { human : "Login Failed" });;
     } else {
         if (request.session && request.session.user) {
-            response.render('loggedin', { human : "Already logged in" });;
+            response.render('loggedin', { human : "Already logged in" });
         } else {
             clientServices.loginService(username, password, function(err, dberr, client) {
                 console.log("Client from login service :" + JSON.stringify(client));
                 if (client === null) {
                     console.log("Auhtentication problem!");
-                    response.render('loggedin', { human : "Login Failed" });;
+                    response.render('loggedin', { human : "Login Failed" });
                 }else {
                     console.log("User from login service :" + client[0].num_client);
                     //add to session
                     request.session.user = username;
                     request.session.num_client = client[0].num_client;
                     request.session.admin = false;
-                    response.render('loggedin', { human : "Congratulations you are logged in !" });;
+                    response.render('loggedin', { human : "Congratulations you are logged in !" });
                 }
             });
         }
@@ -48,11 +48,11 @@ const registerControl = (request, response) => {
         console.log("User from register service :" + insertedID);
         if (exists) {
             console.log("Username taken!");
-            response.send(`registration failed. Username (${username}) already taken!`); //invite to register
+            response.render('registered', {registered : 'Registration failed. Username is already taken!'}); //invite to register
         } else {
             client.num_client = insertedID;
             console.log(`Registration (${username}, ${insertedID}) successful!`);
-            response.send(`Successful registration ${client.contact} (ID.${client.num_client})!`);
+            response.render('registered', {registered : 'Successful registration!'});
         }
         response.end();
     });
