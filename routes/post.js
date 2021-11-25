@@ -6,7 +6,6 @@ const clientController = require('../controllers/clientController');
 const router = express.Router();
 
 //routes for dynamic processing of products
-//-----------------------------------------------
 //route for listing all products
 router.get('/api/catalog', productController.getCatalog);
 router.get('/api/article/:id', productController.getProductByID);
